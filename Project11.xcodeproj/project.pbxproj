@@ -14,6 +14,7 @@
 		C05C89C028E8C3140068369A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05C89BE28E8C3140068369A /* Main.storyboard */; };
 		C05C89C228E8C3150068369A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05C89C128E8C3150068369A /* Assets.xcassets */; };
 		C05C89C528E8C3150068369A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05C89C328E8C3150068369A /* LaunchScreen.storyboard */; };
+		C0B3A63B28EB623A00356C09 /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C0B3A63A28EB623A00356C09 /* MagicParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		C05C89BF28E8C3140068369A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C05C89C128E8C3150068369A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05C89C428E8C3150068369A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C0B3A63A28EB623A00356C09 /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				C05C89BA28E8C3140068369A /* GameScene.swift */,
 				C05C89BC28E8C3140068369A /* GameViewController.swift */,
 				C05C89BE28E8C3140068369A /* Main.storyboard */,
+				C0B3A63A28EB623A00356C09 /* MagicParticle.sks */,
 				C05C89C128E8C3150068369A /* Assets.xcassets */,
 				C05C89C328E8C3150068369A /* LaunchScreen.storyboard */,
 			);
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05C89C028E8C3140068369A /* Main.storyboard in Resources */,
+				C0B3A63B28EB623A00356C09 /* MagicParticle.sks in Resources */,
 				C05C89B728E8C3140068369A /* GameScene.sks in Resources */,
 				C05C89C228E8C3150068369A /* Assets.xcassets in Resources */,
 				C05C89C528E8C3150068369A /* LaunchScreen.storyboard in Resources */,
