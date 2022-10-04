@@ -7,9 +7,21 @@
 
 import SpriteKit
 import GameplayKit
+import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    var ballColors = ["ballRed", "ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballYellow"]
     var scoreLabel: SKLabelNode!
+    var ballsRemainingLabel: SKLabelNode!
+    var ballsRemaining = 5 {
+        didSet {
+            ballsRemainingLabel.text = "Balls Remaining: \(ballsRemaining)"
+            if ballsRemaining == 0 {
+                resetGame()
+            }
+        }
+    }
+    
     var score = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
@@ -37,13 +49,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.text = "Score: 0"
         scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: 980, y: 700)
+        scoreLabel.position = CGPoint(x: 980, y: 650)
         addChild(scoreLabel)
         
         editLabel = SKLabelNode(fontNamed: "Chalkduster")
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
+        
+        ballsRemainingLabel = SKLabelNode(fontNamed: "Chalkduster")
+        ballsRemainingLabel.text = "Balls Remaining: 5"
+        scoreLabel.horizontalAlignmentMode = .right
+        ballsRemainingLabel.position = CGPoint(x: 810, y: 700)
+        addChild(ballsRemainingLabel)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
@@ -73,12 +91,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
                 box.zRotation = CGFloat.random(in: 0...3)
                 box.position = location
+                box.name = "box"
                 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ball = SKSpriteNode(imageNamed: ballColors.randomElement() ?? "ballRed")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
@@ -128,10 +147,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collision(between ball: SKNode, object: SKNode) {
         if object.name == "good" {
             destroy(ball: ball)
-            score += 1
+            ballsRemaining += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
-            score -= 1
+            ballsRemaining -= 1
+        } else if object.name == "box" {
+            destroy(ball: object)
+            score += 1
         }
     }
     
@@ -140,7 +162,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             magicParticles.position = ball.position
             addChild(magicParticles)
         }
-
         ball.removeFromParent()
     }
     
@@ -153,5 +174,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeB.name == "ball" {
             collision(between: nodeB, object: nodeA)
         }
+    }
+    
+    func resetGame() {
+        let ac = UIAlertController(title: "Game Over", message: "You were able to clear \(score) obstacles. Good job!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Play Again", style: .default))
+        view?.window?.rootViewController?.present(ac, animated: true)
+        score = 0
+        ballsRemaining = 5
     }
 }

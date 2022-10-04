@@ -60,8 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				C05C89B428E8C3140068369A /* AppDelegate.swift */,
-				C05C89B628E8C3140068369A /* GameScene.sks */,
 				C05C89BA28E8C3140068369A /* GameScene.swift */,
+				C05C89B628E8C3140068369A /* GameScene.sks */,
 				C05C89BC28E8C3140068369A /* GameViewController.swift */,
 				C05C89BE28E8C3140068369A /* Main.storyboard */,
 				C0B3A63A28EB623A00356C09 /* MagicParticle.sks */,
